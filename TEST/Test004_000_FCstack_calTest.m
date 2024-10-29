@@ -1,18 +1,20 @@
 clear all
 close all
 
-addpath("SLX\");
-addpath("TEST\");
+% Add Path
+addpath("..\SLX\");
+addpath("..\TEST\");
 
 %% User Setting Parameter
 
 % Operational Parameter
 lambda = 1.3;
-
-% Boundary Condition
-T_amb = 293.15;    % [K]
-p_amb = 101325;    % [Pa]
-RH_amb = 0.5;      % [-]
+W_in = 1.9461;              % [kg/s]
+p_in = 250000;              % [Pa]
+T_in = 356.15;              % [K]
+RH_in = 0.9;                % [-]
+p_out = 212471;             % [Pa]
+T_out = 373.15;             % [K]
 
 % Geometoric Parameter
 % FC stack
@@ -20,16 +22,16 @@ V_stack = 3.75e-3;          % [m^3]
 A_stack = 0.001^2*37500;    % [m^2]
 
 %% Automatic calculation parameter
+
 % Physical property
 R0 = 8.31446261815324; % [J/K/mol]
-R = 287;    % [J/kg/K]
 kap = 1.4;  % [-]
 
 % Dry air property
 % Mol fraction
 molf_O2_DA = 0.2;
 molf_N2_DA = 0.8;
-yO2_amb = molf_O2_DA;
+yO2_in = molf_O2_DA;
 % Molecular weight [kg/mol]
 M_O2 = 32e-3;                               % [kg/mol] 
 M_N2 = 28e-3;                               % [kg/mol]
@@ -47,25 +49,26 @@ M_H2O = 18e-3;      % [kg/mol]
 R_vp = R0/M_H2O;    % [J/kg/K]
 
 % Moist air property
-p_vp_amb = sat_vp_pressure(T_amb)*RH_amb;   % [Pa]
-p_DA_amb = p_amb - p_vp_amb;               % [Pa]
-p_O2_amb = molf_O2_DA * p_DA_amb;           % [Pa]
-p_N2_amb = molf_N2_DA * p_DA_amb;           % [Pa]
-molf_O2_MA_amb = p_O2_amb/p_amb;
-molf_N2_MA_amb = p_N2_amb/p_amb;
-molf_H2O_MA_amb = p_vp_amb/p_amb;
-M_MA_amb = molf_O2_MA_amb * M_O2 + molf_N2_MA_amb * M_N2 + molf_H2O_MA_amb * M_H2O;
-R_MA_amb = R0/M_MA_amb;
+p_vp_in = sat_vp_pressure(T_in)*RH_in;  % [Pa]
+p_DA_in = p_in - p_vp_in;         % [Pa]
+p_O2_in = molf_O2_DA * p_DA_in;     % [Pa]
+p_N2_in = molf_N2_DA * p_DA_in;     % [Pa]
+molf_O2_MA_in = p_O2_in/p_in;
+molf_N2_MA_in = p_N2_in/p_in;
+molf_H2O_MA_in = p_vp_in/p_in;
+M_MA_in = molf_O2_MA_in * M_O2 + molf_N2_MA_in * M_N2 + molf_H2O_MA_in * M_H2O;
+R_MA_in = R0/M_MA_in;
 
 % Initial Condition
-T_init = T_amb;             % [K]
-p_init = p_amb;             % [Pa]
-RH_init = RH_amb;           % [-]
-p_vp_init = p_vp_amb;       % [Pa]
-p_DA_init = p_DA_amb;       % [Pa]
-p_O2_init = p_O2_amb;       % [Pa]
-p_N2_init = p_N2_amb;       % [Pa]
-t); 
+T_init = T_in;          % [K]
+p_init = p_in;          % [Pa]
+RH_init = RH_in;        % [-]
+p_vp_init = p_vp_in;    % [Pa]
+p_DA_init = p_DA_in;    % [Pa]
+p_O2_init = p_O2_in;    % [Pa]
+p_N2_init = p_N2_in;    % [Pa]
+
+m_st_N2_init = p_N2_init*V_stack/(R_N2*T_init); 
 m_st_O2_init = p_O2_init*V_stack/(R_O2*T_init);
 m_st_vp_init = p_vp_init*V_stack/(R_vp*T_init);
 
