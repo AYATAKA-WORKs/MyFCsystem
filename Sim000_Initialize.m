@@ -8,6 +8,7 @@ addpath("TEST\");
 
 % Operational Parameter
 lambda = 1.3;
+A_VGS = 0.015^2;    % [m^2]
 
 % Boundary Condition
 T_amb = 293.15;    % [K]
@@ -24,6 +25,7 @@ A_stack = 0.001^2*37500;    % [m^2]
 R0 = 8.31446261815324; % [J/K/mol]
 R = 287;    % [J/kg/K]
 kap = 1.4;  % [-]
+cp = 1005;  % [J/kg/K]
 
 % Dry air property
 % Mol fraction
@@ -65,9 +67,10 @@ p_vp_init = p_vp_amb;       % [Pa]
 p_DA_init = p_DA_amb;       % [Pa]
 p_O2_init = p_O2_amb;       % [Pa]
 p_N2_init = p_N2_amb;       % [Pa]
-t); 
+
 m_st_O2_init = p_O2_init*V_stack/(R_O2*T_init);
 m_st_vp_init = p_vp_init*V_stack/(R_vp*T_init);
+
 
 % Set Compressor Parameter
 cmp.param.dc = 0.2286;      % [m]
