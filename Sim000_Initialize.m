@@ -9,6 +9,8 @@ addpath("TEST\");
 % Operational Parameter
 lambda = 1.3;
 A_VGS = 0.015^2;    % [m^2]
+N_cmd.time = [0;10;20;120];
+N_cmd.signals.values = [0;0;100e3;100e3];
 
 % Boundary Condition
 T_amb = 293.15;    % [K]
