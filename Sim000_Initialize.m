@@ -1,4 +1,4 @@
-clear all
+clear
 close all
 
 addpath("SLX\");
@@ -8,9 +8,12 @@ addpath("TEST\");
 
 % Operational Parameter
 lambda = 1.3;
-A_VGS = 0.015^2;    % [m^2]
-N_cmd.time = [0;10;20;120];
-N_cmd.signals.values = [0;0;100e3;100e3];
+A_VGS = 0.012^2;    % [m^2]
+N_cmd.time = [0;10;15;20;25;120];
+N_cmd.signals.values = [10e3;10e3;70e3;70e3;100e3;100e3];
+
+W_stack_cmd.time = [0;10;15;20;25;120];
+W_stack_cmd.signals.values = [0.05;0.05;0.075;0.075;0.1;0.1];
 
 % Boundary Condition
 T_amb = 293.15;    % [K]
@@ -18,9 +21,12 @@ p_amb = 101325;    % [Pa]
 RH_amb = 0.5;      % [-]
 
 % Geometoric Parameter
+% Supply manifold
+V_sm    = 1.00e-2;      % [m^3]
+A_sm    = 1.00e-3;      % [m^2]     
 % FC stack
-V_stack = 3.75e-3;          % [m^3]
-A_stack = 0.001^2*37500;    % [m^2]
+V_stack = 3.75e-3;      % [m^3]
+A_stack = 0.001^2*3750; % [m^2]
 
 %% Automatic calculation parameter
 % Physical property
@@ -70,9 +76,9 @@ p_DA_init = p_DA_amb;       % [Pa]
 p_O2_init = p_O2_amb;       % [Pa]
 p_N2_init = p_N2_amb;       % [Pa]
 
+m_st_N2_init = p_N2_init*V_stack/(R_N2*T_init); 
 m_st_O2_init = p_O2_init*V_stack/(R_O2*T_init);
 m_st_vp_init = p_vp_init*V_stack/(R_vp*T_init);
-
 
 % Set Compressor Parameter
 cmp.param.dc = 0.2286;      % [m]

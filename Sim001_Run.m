@@ -1,6 +1,6 @@
-clear all
+clear
 %% Initalize
-Pre001_Initialize;
+Sim000_Initialize
 
 %% Simulate
 out = sim(".\SLX\Integrated_Model.slx");
