@@ -9,10 +9,10 @@ addpath("DATA\");
 % Operational Parameter --------------------------------------------------
 % N_cmd.time = [0;10;15;20;25;120];
 % N_cmd.signals.values = [10e3;10e3;70e3;70e3;100e3;100e3];
-W_stack_cmd.time = [0;20;120];
-W_stack_cmd.signals.values = [0;0.075;0.075];
-p_stack_cmd.time = [0;20;120];
-p_stack_cmd.signals.values = [101325;250000;250000];
+W_stack_cmd.time = [0;20;40;40;80;80;120];
+W_stack_cmd.signals.values = [0;0.06;0.06;0.08;0.08;0.06;0.06];
+p_stack_cmd.time = [0;20;40;40;120];
+p_stack_cmd.signals.values = [101325;250000;250000;250000;250000];
 
 % Boundary Condition -----------------------------------------------------
 T_amb = 293.15;         % [K]
@@ -51,8 +51,16 @@ k_e_M = 0.0153;             % [V/(rad/s}]
 R_M   = 0.82;               % [Ω]
 eta_M = 0.98;               % [-]
 % Rotor
-J_rotor = 0.001;            % [kg*m^2]
+J_rotor = 0.002;            % [kg*m^2]
 
+% Controller Parameter ---------------------------------------------------
+estNcr = load('DATA\estNcrTable.mat');
+ctrl.pressure.P = 1;
+ctrl.pressure.I = 0.1;
+ctrl.flow.P = 0.01;
+ctrl.flow.I = 0.1;
+ctrl.motor.P = 1;
+ctrl.motor.I = 0.05;
 
 %% Automatically calculated parameter
 % Initial Condition
