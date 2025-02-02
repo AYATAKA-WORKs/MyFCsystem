@@ -29,6 +29,11 @@ cmp.param.eta_mech = 0.98;  % [-]
 cmp.map.coeff.a = [-3.69906e-5, 2.70399e-4, -5.36235e-4, -4.63685e-5, 2.21195e-3];
 cmp.map.coeff.b = [1.766467,-1.34837,2.44419];
 cmp.map.coeff.c = [-9.78755e-3, 0.10581, -0.42937, 0.80121, -0.68344, 0.43331];
+cmp.ref.p = 101325;         % [Pa]
+cmp.ref.T = 293.15;         % [K]
+cmp.ref.R = 287;            % [J/kg/K]
+cmp.ref.kap = 1.4;          % [-]
+cmp.ref.cp = 1005;          % [J/kg/K]
 % Supply manifold
 V_sm = 1.00e-2;             % [m^3]
 A_sm = 1.00e-3;             % [m^2]
@@ -55,10 +60,10 @@ J_rotor = 0.002;            % [kg*m^2]
 
 % Controller Parameter ---------------------------------------------------
 estNcr = load('DATA\estNcrTable.mat');
-ctrl.pressure.P = 1;
+ctrl.pressure.P = 0.1;
 ctrl.pressure.I = 0.1;
-ctrl.flow.P = 0.01;
-ctrl.flow.I = 0.1;
+ctrl.flow.P = 0.00001;
+ctrl.flow.I = 0.01;
 ctrl.motor.P = 1;
 ctrl.motor.I = 0.05;
 
