@@ -37,6 +37,10 @@ rslt.Tin_tbn = out.logsout.getElement("Tin_tbn");
 rslt.Wout_tbn = out.logsout.getElement("Win_tbn");
 rslt.pout_tbn = out.logsout.getElement("pout_tbn");
 rslt.Tout_tbn = out.logsout.getElement("Tout_tbn");
+rslt.VGS_cmd = out.logsout.getElement("VGS_cmd");
+
+% Voltage
+rslt.v_M = out.logsout.getElement("v_M");
 
 % Power
 rslt.P_cmp = out.logsout.getElement("P_cmp");
@@ -46,6 +50,11 @@ rslt.P_M = out.logsout.getElement("P_M");
 % Efficiency
 rslt.eta_is_cmp = out.logsout.getElement("eta_is_cmp");
 rslt.eta_is_tbn = out.logsout.getElement("eta_is_tbn");
+
+% Command
+rslt.W_stack_cmd = out.logsout.getElement("W_stack_cmd");
+rslt.p_stack_cmd = out.logsout.getElement("p_stack_cmd");
+rslt.N_cmd = out.logsout.getElement("N_cmd");
 
 %% Make table of final values
 rslt.table.amb = ...
