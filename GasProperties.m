@@ -179,6 +179,13 @@ classdef GasProperties
             N9 = -0.23855557567849e0;
             N10 = 0.65017534844798e3;
             
+            % 飽和温度の上下限値を設定
+            if Ts < 0
+                Ts = 0;
+            elseif Ts > 647
+                Ts = 647;
+            end
+
             if Ts < 273.15+0.01
                 % -100~0.01C//三重点を計算以下は wexler-hyland のシミュレーションプログラム式
                 psat = exp(C1 / Ts + C2 + C3 * Ts + C4 * Ts^2 + C5 * Ts^3 + C6 * Ts^4 + C7 * log(Ts)) * P_CONVERT;

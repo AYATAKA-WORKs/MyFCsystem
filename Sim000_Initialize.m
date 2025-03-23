@@ -6,20 +6,20 @@ addpath("TEST\");
 addpath("DATA\");
 
 %% User Setting Parameter
+% Boundary Condition -----------------------------------------------------
+T_amb = 273.15 + 30;    % [K]
+p_amb = 101325 * 1.0;    % [Pa]
+RH_amb = 0.4;             % [-]
+yO2_amb = 20.9476e-2;   % [-]
+% ※ 環境条件=初期値 とする
+
 % Operational Parameter --------------------------------------------------
 % N_cmd.time = [0;10;15;20;25;120];
 % N_cmd.signals.values = [10e3;10e3;70e3;70e3;100e3;100e3];
 W_stack_cmd.time = [0;20;40;40;80;80;120];
 W_stack_cmd.signals.values = [0;0.06;0.06;0.08;0.08;0.06;0.06];
 p_stack_cmd.time = [0;20;40;40;120];
-p_stack_cmd.signals.values = [101325;250000;250000;250000;250000];
-
-% Boundary Condition -----------------------------------------------------
-T_amb = 293.15;         % [K]
-p_amb = 101325;         % [Pa]
-RH_amb = 0.5;           % [-]
-yO2_amb = 20.9476e-2;   % [-]
-% ※ 環境条件=初期値 とする
+p_stack_cmd.signals.values = [p_amb;250000;250000;250000;250000];
 
 % Component Parameter ----------------------------------------------------
 % Compressor
@@ -39,12 +39,18 @@ V_sm = 1.00e-2;             % [m^3]
 A_sm = 1.00e-3;             % [m^2]
 % Heatexchanger
 eta_hex = 0.8;              % [-]
-T_coolant = 293.15;         % [K]
-cp_coolant = 4185;          % [J/k/kg]
+V_hx = 1.00e-2;             % [m^3]
+A_hx = 5.00e-4;             % [m^2]
+% T_coolant = 293.15;         % [K]
+% cp_coolant = 4185;          % [J/k/kg]
+% Humidifire
+V_hm = 1.00e-2;             % [m^3]
+A_hm = 5.00e-4;             % [m^2]
 % FC stack
 lambda = 1.3;               % Excess O2 ratio [-]
+Tout_st = 353.15;           % [K]
 V_stack = 3.75e-3;          % [m^3]
-A_stack = 0.001^2*3750/10;  % [m^2]
+A_stack = 0.001^2*3750/2;     % [m^2]
 % Turbine
 V_tbn_m = 0.01;             % [m^3]
 A_VGS_center = 0.012^2;     % [m^2]
